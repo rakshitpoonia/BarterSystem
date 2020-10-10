@@ -5,6 +5,9 @@ import { createBottomTabNavigator } from 'react-navigation-tabs';
 import SignupLoginScreen from './screens/SignupLoginScreen';
 import HomeScreen from './screens/HomeScreen'
 import Exchange from './screens/Exchange';
+import {createDrawerNavigator} from 'react-navigation-drawer';
+import CustomSidebarMenu from './components/CustomSidebarMenu';
+import SettingScreen from './screens/SettingScreen';
 
 export default function App() {
   return (
@@ -42,9 +45,24 @@ const TabNavigator = createBottomTabNavigator({
   }
 );
 
+const AppDrawNavigator = createDrawerNavigator({
+  Home : {
+    screen : TabNavigator
+    },
+  Settings : {
+    screen : SettingScreen
+    }
+  },
+  {
+    contentComponent:CustomSidebarMenu
+  },
+  {
+    initialRouteName : 'Home'
+  })
+
 const switchNavigator = createSwitchNavigator({
   WelcomeScreen:{screen: SignupLoginScreen},
-  BottomTab:{screen: TabNavigator}
+  AppDrawNavigator : AppDrawNavigator,
 })
 
 const AppContainer =  createAppContainer(switchNavigator);

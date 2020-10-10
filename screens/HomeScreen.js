@@ -3,6 +3,7 @@ import { View, StyleSheet, Text, FlatList,TouchableOpacity } from 'react-native'
 import { ListItem } from 'react-native-elements'
 import MyHeader from '../components/MyHeader';
 import db from '../config'
+import firebase from 'firebase';
 
 export default class HomeScreen extends Component{
   constructor(){
@@ -61,7 +62,7 @@ export default class HomeScreen extends Component{
             this.state.allRequests.length === 0
             ?(
               <View style={{flex:1, fontSize: 20, justifyContent:'center', alignItems:'center'}}>
-                <Text style={{ fontSize: 20}}>List of all Barter</Text>
+                <Text style={{ fontSize: 20}}>There are no Items for exchange</Text>
               </View>
             )
             :(
